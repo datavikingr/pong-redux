@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ra5xfalpv1o4"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
