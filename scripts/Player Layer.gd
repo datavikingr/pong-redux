@@ -30,13 +30,14 @@ func _on_ball_tree_exited():
 	ball = null
 
 func _on_goal_line_west_body_entered(body):
-	#Check for player or ball collision
-	if body.is_in_group("ball"):
+	print("contact")
+	if body.is_in_group("ball"): #Check for player or ball collision
 		print("GOAL BY Right Player")
 	pass # Replace with function body.
 
 
 func _on_goal_line_east_body_entered(body):
-	if body.is_in_group("ball"):
+	print("contact")
+	if body.is_in_group("ball"): #Check for player or ball collision
 		print("GOAL BY Left Player")
 	pass # Replace with function body.
