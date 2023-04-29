@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=3 uid="uid://baurjv4dr2yso"]
 
-[ext_resource type="Texture2D" uid="uid://bycw1k81apcxs" path="res://assets/background.png" id="1_12jnl"]
+[ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_12jnl"]
 [ext_resource type="PhysicsMaterial" uid="uid://b6865v8dn6cqp" path="res://tres/wall.tres" id="2_q337k"]
-[ext_resource type="Texture2D" uid="uid://cuqiaqlly3fe" path="res://assets/wall.png" id="3_4rrsi"]
-[ext_resource type="Texture2D" uid="uid://ca8t05oescd7w" path="res://assets/net.png" id="4_aitcj"]
-[ext_resource type="Texture2D" uid="uid://csh1edl0ncyds" path="res://assets/goalline.png" id="5_27bcd"]
-[ext_resource type="Texture2D" uid="uid://c3bh0cu0l43ud" path="res://assets/goalposts.png" id="6_xup7u"]
+[ext_resource type="Texture2D" uid="uid://c36i40ikkmnwo" path="res://assets/wall.png" id="3_4rrsi"]
+[ext_resource type="Texture2D" uid="uid://c0dwak6er002q" path="res://assets/net.png" id="4_aitcj"]
+[ext_resource type="Texture2D" uid="uid://bsqd86neygua2" path="res://assets/goalline.png" id="5_27bcd"]
+[ext_resource type="Texture2D" uid="uid://6nb8324ysgpq" path="res://assets/goalposts.png" id="6_xup7u"]
 [ext_resource type="Script" path="res://scripts/Player Layer.gd" id="7_h0g0b"]
 [ext_resource type="Script" path="res://scripts/Player Left.gd" id="8_2oo0k"]
-[ext_resource type="Texture2D" uid="uid://c6v1f8y2ie18w" path="res://assets/paddlepurple.png" id="8_ojuyw"]
-[ext_resource type="Texture2D" uid="uid://6f63gilim4yq" path="res://assets/paddleblue.png" id="9_jjq5k"]
+[ext_resource type="Texture2D" uid="uid://c8dsqk2on7074" path="res://assets/paddlepurple.png" id="8_ojuyw"]
+[ext_resource type="Texture2D" uid="uid://cumw3xn8ddbdn" path="res://assets/paddleblue.png" id="9_jjq5k"]
 [ext_resource type="Script" path="res://scripts/Player Right.gd" id="10_sr4sl"]
 [ext_resource type="PackedScene" uid="uid://bub76p0i3bnrr" path="res://tscn/ball.tscn" id="12_7qi1f"]
 
@@ -145,7 +145,8 @@ mass = 1000.0
 inertia = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
-continuous_cd = 1
+max_contacts_reported = 10
+contact_monitor = true
 lock_rotation = true
 freeze = true
 freeze_mode = 1
@@ -187,7 +188,8 @@ mass = 1000.0
 inertia = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
-continuous_cd = 1
+max_contacts_reported = 10
+contact_monitor = true
 lock_rotation = true
 freeze = true
 freeze_mode = 1
@@ -256,7 +258,7 @@ debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 
 [node name="Ball" parent="Player Layer" instance=ExtResource("12_7qi1f")]
 
-[connection signal="body_entered" from="Board Layer/Goal West/Goal Line West" to="Player Layer" method="_on_goal_line_west_body_entered"]
-[connection signal="body_entered" from="Board Layer/Goal East/Goal Line East" to="Player Layer" method="_on_goal_line_east_body_entered"]
+[connection signal="body_entered" from="Board Layer/Goal West/Goal Line West" to="Player Layer" method="_on_goal_west"]
+[connection signal="body_entered" from="Board Layer/Goal East/Goal Line East" to="Player Layer" method="_on_goal_east"]
 
 [editable path="Player Layer/Ball"]
