@@ -22,3 +22,5 @@ speed = 150
 [node name="Paddle2" parent="." instance=ExtResource("4_30e65")]
 position = Vector2(210, 67)
 speed = 150
+
+[editable path="Board"]

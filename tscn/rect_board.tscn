@@ -1,0 +1,258 @@
+[gd_scene load_steps=18 format=3 uid="uid://btvsut1vv0jlo"]
+
+[ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_12jnl"]
+[ext_resource type="PhysicsMaterial" uid="uid://b6865v8dn6cqp" path="res://tres/wall.tres" id="2_q337k"]
+[ext_resource type="Texture2D" uid="uid://c36i40ikkmnwo" path="res://assets/wall.png" id="3_4rrsi"]
+[ext_resource type="Texture2D" uid="uid://c0dwak6er002q" path="res://assets/net.png" id="4_aitcj"]
+[ext_resource type="Texture2D" uid="uid://bsqd86neygua2" path="res://assets/goalline.png" id="5_27bcd"]
+[ext_resource type="Texture2D" uid="uid://6nb8324ysgpq" path="res://assets/goalposts.png" id="6_xup7u"]
+[ext_resource type="Script" path="res://scripts/Player Layer.gd" id="7_h0g0b"]
+[ext_resource type="Script" path="res://scripts/Player Left.gd" id="8_2oo0k"]
+[ext_resource type="Texture2D" uid="uid://c8dsqk2on7074" path="res://assets/paddlepurple.png" id="8_ojuyw"]
+[ext_resource type="Texture2D" uid="uid://cumw3xn8ddbdn" path="res://assets/paddleblue.png" id="9_jjq5k"]
+[ext_resource type="Script" path="res://scripts/Player Right.gd" id="10_sr4sl"]
+[ext_resource type="Texture2D" uid="uid://cg133atwqqek2" path="res://assets/ball.png" id="10_tiwrw"]
+[ext_resource type="Script" path="res://scripts/Ball.gd" id="12_cigp0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
+size = Vector2(2, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muysb"]
+size = Vector2(2, 2)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_851qf"]
+radius = 2.0
+height = 12.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cohyg"]
+radius = 2.0
+
+[node name="rect_board" type="Node2D"]
+
+[node name="UI Layer" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="UI Layer"]
+position = Vector2(120, 33)
+texture = ExtResource("1_12jnl")
+
+[node name="Board Layer" type="Node2D" parent="."]
+z_index = 10
+
+[node name="Walls" type="StaticBody2D" parent="Board Layer"]
+physics_material_override = ExtResource("2_q337k")
+
+[node name="North Wall" type="StaticBody2D" parent="Board Layer/Walls"]
+position = Vector2(120, 3)
+rotation = 1.5708
+scale = Vector2(1, 20)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Walls/North Wall"]
+texture = ExtResource("3_4rrsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls/North Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
+
+[node name="East Wall" type="StaticBody2D" parent="Board Layer/Walls"]
+position = Vector2(237, 68)
+scale = Vector2(1, 11.33)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Walls/East Wall"]
+texture = ExtResource("3_4rrsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls/East Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
+
+[node name="South Wall" type="StaticBody2D" parent="Board Layer/Walls"]
+position = Vector2(120, 132)
+rotation = 1.5708
+scale = Vector2(1, 20)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Walls/South Wall"]
+texture = ExtResource("3_4rrsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls/South Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
+
+[node name="West Wall" type="StaticBody2D" parent="Board Layer/Walls"]
+position = Vector2(3, 68)
+scale = Vector2(1, 11.33)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Walls/West Wall"]
+texture = ExtResource("3_4rrsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls/West Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls"]
+polygon = PackedVector2Array(120, 6, 120, 0, 0, 0, 0, 135, 240, 135, 240, 0, 120, 0, 120, 6, 234, 6, 234, 129, 6, 129, 6, 6)
+
+[node name="Center Net" type="Node2D" parent="Board Layer"]
+modulate = Color(1, 1, 1, 0.258824)
+position = Vector2(120, 12)
+
+[node name="Net1" type="Sprite2D" parent="Board Layer/Center Net"]
+texture = ExtResource("4_aitcj")
+
+[node name="Net2" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 12)
+texture = ExtResource("4_aitcj")
+
+[node name="Net3" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 24)
+texture = ExtResource("4_aitcj")
+
+[node name="Net4" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 36)
+texture = ExtResource("4_aitcj")
+
+[node name="Net5" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 48)
+texture = ExtResource("4_aitcj")
+
+[node name="Net6" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 60)
+texture = ExtResource("4_aitcj")
+
+[node name="Net7" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 72)
+texture = ExtResource("4_aitcj")
+
+[node name="Net8" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 84)
+texture = ExtResource("4_aitcj")
+
+[node name="Net9" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 96)
+texture = ExtResource("4_aitcj")
+
+[node name="Net10" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 108)
+texture = ExtResource("4_aitcj")
+
+[node name="Net11" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 120)
+texture = ExtResource("4_aitcj")
+
+[node name="Goal West" type="Node2D" parent="Board Layer"]
+position = Vector2(7, 67)
+
+[node name="Goal Line West" type="StaticBody2D" parent="Board Layer/Goal West"]
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal West/Goal Line West"]
+rotation = -3.14159
+scale = Vector2(1, 3.5)
+texture = ExtResource("5_27bcd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal West/Goal Line West"]
+position = Vector2(-9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ojja3")
+
+[node name="Goal Post West-North" type="StaticBody2D" parent="Board Layer/Goal West"]
+position = Vector2(0, -22)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal West/Goal Post West-North"]
+texture = ExtResource("6_xup7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal West/Goal Post West-North"]
+shape = SubResource("RectangleShape2D_muysb")
+
+[node name="Goal Post West-South" type="StaticBody2D" parent="Board Layer/Goal West"]
+position = Vector2(0, 22)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal West/Goal Post West-South"]
+texture = ExtResource("6_xup7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal West/Goal Post West-South"]
+shape = SubResource("RectangleShape2D_muysb")
+
+[node name="Goal East" type="Node2D" parent="Board Layer"]
+position = Vector2(233, 67)
+
+[node name="Goal Line East" type="StaticBody2D" parent="Board Layer/Goal East"]
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal East/Goal Line East"]
+scale = Vector2(1, 3.5)
+texture = ExtResource("5_27bcd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal East/Goal Line East"]
+position = Vector2(-9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ojja3")
+
+[node name="Goal Post East-North" type="StaticBody2D" parent="Board Layer/Goal East"]
+position = Vector2(0, -22)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal East/Goal Post East-North"]
+texture = ExtResource("6_xup7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal East/Goal Post East-North"]
+shape = SubResource("RectangleShape2D_muysb")
+
+[node name="Goal Post East-South" type="StaticBody2D" parent="Board Layer/Goal East"]
+position = Vector2(0, 22)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal East/Goal Post East-South"]
+texture = ExtResource("6_xup7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal East/Goal Post East-South"]
+shape = SubResource("RectangleShape2D_muysb")
+
+[node name="Player Layer" type="Node2D" parent="."]
+z_index = 20
+script = ExtResource("7_h0g0b")
+
+[node name="PlayerLeft" type="RigidBody2D" parent="Player Layer"]
+position = Vector2(20, 67.75)
+mass = 1000.0
+physics_material_override = ExtResource("2_q337k")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("8_2oo0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player Layer/PlayerLeft"]
+texture = ExtResource("8_ojuyw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/PlayerLeft"]
+shape = SubResource("CapsuleShape2D_851qf")
+debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
+
+[node name="PlayerRight" type="RigidBody2D" parent="Player Layer"]
+position = Vector2(220, 67.75)
+mass = 1000.0
+physics_material_override = ExtResource("2_q337k")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("10_sr4sl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player Layer/PlayerRight"]
+texture = ExtResource("9_jjq5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/PlayerRight"]
+shape = SubResource("CapsuleShape2D_851qf")
+debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
+
+[node name="Ball" type="RigidBody2D" parent="Player Layer"]
+position = Vector2(120, 67)
+mass = 20.0
+inertia = 2.0
+gravity_scale = 0.0
+script = ExtResource("12_cigp0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player Layer/Ball"]
+texture = ExtResource("10_tiwrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/Ball"]
+shape = SubResource("CircleShape2D_cohyg")

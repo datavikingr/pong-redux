@@ -27,11 +27,6 @@ scale = Vector2(1, 15)
 position = Vector2(234, -17)
 scale = Vector2(1, 15)
 
-[node name="Wall3" parent="." instance=ExtResource("2_ua0p0")]
-position = Vector2(-10, 6)
-rotation = -1.5708
-scale = Vector2(1, 25)
-
 [node name="Wall5" parent="." instance=ExtResource("2_ua0p0")]
 position = Vector2(-34, 6)
 rotation = -1.5708
@@ -42,61 +37,6 @@ position = Vector2(-28, 135)
 rotation = -1.5708
 scale = Vector2(1, 25)
 
-[node name="Net" type="Sprite2D" parent="."]
-position = Vector2(120, 12)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net2" type="Sprite2D" parent="."]
-position = Vector2(120, 24)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net3" type="Sprite2D" parent="."]
-position = Vector2(120, 36)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net4" type="Sprite2D" parent="."]
-position = Vector2(120, 48)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net5" type="Sprite2D" parent="."]
-position = Vector2(120, 60)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net6" type="Sprite2D" parent="."]
-position = Vector2(120, 72)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net7" type="Sprite2D" parent="."]
-position = Vector2(120, 84)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net8" type="Sprite2D" parent="."]
-position = Vector2(120, 96)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net9" type="Sprite2D" parent="."]
-position = Vector2(120, 108)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net10" type="Sprite2D" parent="."]
-position = Vector2(120, 120)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
-[node name="Net11" type="Sprite2D" parent="."]
-position = Vector2(120, 124)
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_g7ycn")
-
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(6, 6)
 polygon = PackedVector2Array(0, 0, 228, 0, 228, -6, -6, -6, -6, 129, 235, 129, 234, -6, 228, -6, 228, 123, 0, 123)
@@ -106,3 +46,60 @@ position = Vector2(6, 67)
 
 [node name="Goal2" parent="." instance=ExtResource("5_21q38")]
 position = Vector2(234, 67)
+
+[node name="Net" type="Node2D" parent="."]
+
+[node name="Net1" type="Sprite2D" parent="Net"]
+position = Vector2(120, 12)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net2" type="Sprite2D" parent="Net"]
+position = Vector2(120, 24)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net3" type="Sprite2D" parent="Net"]
+position = Vector2(120, 36)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net4" type="Sprite2D" parent="Net"]
+position = Vector2(120, 48)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net5" type="Sprite2D" parent="Net"]
+position = Vector2(120, 60)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net6" type="Sprite2D" parent="Net"]
+position = Vector2(120, 72)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net7" type="Sprite2D" parent="Net"]
+position = Vector2(120, 84)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net8" type="Sprite2D" parent="Net"]
+position = Vector2(120, 96)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net9" type="Sprite2D" parent="Net"]
+position = Vector2(120, 108)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net10" type="Sprite2D" parent="Net"]
+position = Vector2(120, 124)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")
+
+[node name="Net11" type="Sprite2D" parent="Net"]
+position = Vector2(120, 120)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_g7ycn")

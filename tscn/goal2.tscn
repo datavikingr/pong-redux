@@ -21,9 +21,9 @@ texture = ExtResource("2_onqrp")
 position = Vector2(-1, -12)
 texture = ExtResource("3_3eoa6")
 
-[node name="GoalLineCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="GoalLineCollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["GoalLine"]]
 position = Vector2(0, -1)
-polygon = PackedVector2Array(-2, -15, 0, -15, 0, 16, -2, 16)
+polygon = PackedVector2Array(-2, -15, 0, -15, 0, 17, -2, 17)
 
 [node name="PostsCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -16, -4, -16, -4, -18, 2, -18, 2, 18, -4, 18, -4, 16, 0, 16)
