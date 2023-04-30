@@ -55,7 +55,7 @@ script = ExtResource("3_hsrre")
 position = Vector2(3, 3)
 
 [node name="Powerup Box" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
-position = Vector2(3, 2)
+position = Vector2(6, 2)
 texture = ExtResource("4_8mcdw")
 
 [node name="ScoreBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
@@ -108,81 +108,81 @@ modulate = Color(1, 1, 1, 0.247059)
 position = Vector2(92, 2)
 texture = ExtResource("3_c5dut")
 
-[node name="GameBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+[node name="RoundBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
 modulate = Color(0.823529, 0.823529, 0.247059, 0.247059)
-position = Vector2(105, 2)
+position = Vector2(103, 2)
 texture = ExtResource("3_c5dut")
 
-[node name="GameBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+[node name="RoundBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
 modulate = Color(0.823529, 0.823529, 0.247059, 0.247059)
-position = Vector2(113, 2)
+position = Vector2(111, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="Player Right UI" type="Node2D" parent="UI Layer/UI Elements"]
 position = Vector2(123, 3)
 
 [node name="Powerup Box" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
-position = Vector2(111, 2)
+position = Vector2(108, 2)
 texture = ExtResource("4_8mcdw")
 
 [node name="ScoreBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(92, 2)
+position = Vector2(94, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(84, 2)
+position = Vector2(86, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall3" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(76, 2)
+position = Vector2(78, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall4" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(68, 2)
+position = Vector2(70, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall5" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(60, 2)
+position = Vector2(62, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall6" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(52, 2)
+position = Vector2(54, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall7" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(44, 2)
+position = Vector2(46, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall8" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(36, 2)
+position = Vector2(38, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall9" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(28, 2)
+position = Vector2(30, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="ScoreBall10" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(20, 2)
+position = Vector2(22, 2)
 texture = ExtResource("3_c5dut")
 
-[node name="GameBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+[node name="RoundBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(0.823529, 0.823529, 0.247059, 0.247059)
-position = Vector2(9, 2)
+position = Vector2(11, 2)
 texture = ExtResource("3_c5dut")
 
-[node name="GameBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+[node name="RoundBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 modulate = Color(0.823529, 0.823529, 0.247059, 0.247059)
-position = Vector2(1, 2)
+position = Vector2(3, 2)
 texture = ExtResource("3_c5dut")
 
 [node name="Splash Timer" type="Timer" parent="UI Layer/UI Elements"]
