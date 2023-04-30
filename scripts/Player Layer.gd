@@ -1,8 +1,9 @@
 extends Node2D
 
 var ball
-var inner_court_size = Vector2(0, 0) #Top-left court bounds
-var outer_court_size = Vector2(240, 135) #Bottom-right court bounds
+var inner_court_size = Vector2(6, 16) #Top-left court bounds
+var outer_court_size = Vector2(234, 129) #Bottom-right court bounds
+signal goal(player:String)
 
 func _ready() -> void:
 	ball = get_node("Ball")
@@ -32,10 +33,12 @@ func _on_goal_east(body:Node) -> void:
 	#print("contact east ", body)
 	if body.is_in_group("ball"):
 		print("GOAL! Player Left Scored!")
+		goal.emit("Left")
 	pass # Replace with function body.
 
 func _on_goal_west(body:Node) -> void:
 	#print("contact west ", body)
 	if body.is_in_group("ball"):
 		print("GOAL! Player Right Scored!")
+		goal.emit("Right")
 	pass # Replace with function body.

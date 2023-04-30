@@ -11,12 +11,12 @@ func _physics_process(_delta):
 	)
 	linear_velocity = input_direction * speed
 	rotation = 0
-	var killswitch = Input.get_action_strength("kill")
-	if killswitch > 0:
-		print("KILL")
-		ball = get_node_or_null("../Ball")
-		if ball != null:
-			ball.queue_free()
+	#var killswitch = Input.get_action_strength("kill")
+	#if killswitch > 0:
+	#	print("KILL")
+	#	ball = get_node_or_null("../Ball")
+	#	if ball != null:
+	#		ball.queue_free()
 
 func _on_body_entered(_body):
 	angular_velocity = 0
