@@ -32,13 +32,20 @@ func _on_ball_tree_exited() -> void:
 func _on_goal_east(body:Node) -> void:
 	#print("contact east ", body)
 	if body.is_in_group("ball"):
-		print("GOAL! Player Left Scored!")
+		set_physics_process(false)
+		body.queue_free()
 		goal.emit("Left")
 	pass # Replace with function body.
 
 func _on_goal_west(body:Node) -> void:
 	#print("contact west ", body)
 	if body.is_in_group("ball"):
-		print("GOAL! Player Right Scored!")
+		set_physics_process(false)
+		body.queue_free()
 		goal.emit("Right")
+	pass # Replace with function body.
+
+
+func _on_splash_timer_timeout():
+	set_physics_process(true)
 	pass # Replace with function body.

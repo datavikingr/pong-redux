@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://baurjv4dr2yso"]
+[gd_scene load_steps=27 format=3 uid="uid://baurjv4dr2yso"]
 
 [ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_12jnl"]
 [ext_resource type="Texture2D" uid="uid://de12kjkihoviu" path="res://assets/uibar.png" id="2_1762v"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://6nb8324ysgpq" path="res://assets/goalposts.png" id="6_xup7u"]
 [ext_resource type="Texture2D" uid="uid://bonlkiqjpatc6" path="res://assets/G.png" id="7_brfyp"]
 [ext_resource type="Script" path="res://scripts/Player Layer.gd" id="7_h0g0b"]
+[ext_resource type="Script" path="res://scripts/Goal Splash.gd" id="7_qygbx"]
 [ext_resource type="Script" path="res://scripts/Player Left.gd" id="8_2oo0k"]
 [ext_resource type="Texture2D" uid="uid://c8dsqk2on7074" path="res://assets/paddlepurple.png" id="8_ojuyw"]
 [ext_resource type="Texture2D" uid="uid://8wpiodjaimsf" path="res://assets/O.png" id="8_sws53"]
@@ -195,6 +196,7 @@ script = ExtResource("6_lasbx")
 visible = false
 z_index = 15
 position = Vector2(100, 72.5)
+script = ExtResource("7_qygbx")
 
 [node name="splash_bg" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
 position = Vector2(20, -0.5)
@@ -451,6 +453,8 @@ debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 position = Vector2(120, 72.5)
 
 [connection signal="goal_splash_begin" from="UI Layer/UI Elements" to="UI Layer/UI Elements/Splash Timer" method="_on_ui_elements_goal_splash_begin"]
+[connection signal="timeout" from="UI Layer/UI Elements/Splash Timer" to="Player Layer" method="_on_splash_timer_timeout"]
+[connection signal="timeout" from="UI Layer/UI Elements/Splash Timer" to="UI Layer/UI Elements/Goal Splash" method="_on_splash_timer_timeout"]
 [connection signal="body_entered" from="Board Layer/Goal West/Goal Line West" to="Player Layer" method="_on_goal_west"]
 [connection signal="body_entered" from="Board Layer/Goal East/Goal Line East" to="Player Layer" method="_on_goal_east"]
 [connection signal="goal" from="Player Layer" to="UI Layer/UI Elements" method="_on_player_layer_goal"]
