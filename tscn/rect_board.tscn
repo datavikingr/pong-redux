@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://baurjv4dr2yso"]
+[gd_scene load_steps=23 format=3 uid="uid://baurjv4dr2yso"]
 
 [ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_12jnl"]
 [ext_resource type="Texture2D" uid="uid://de12kjkihoviu" path="res://assets/uibar.png" id="2_1762v"]
@@ -11,18 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://bsqd86neygua2" path="res://assets/goalline.png" id="5_27bcd"]
 [ext_resource type="Script" path="res://scripts/Splash Timer.gd" id="6_lasbx"]
 [ext_resource type="Texture2D" uid="uid://6nb8324ysgpq" path="res://assets/goalposts.png" id="6_xup7u"]
-[ext_resource type="Texture2D" uid="uid://bonlkiqjpatc6" path="res://assets/G.png" id="7_brfyp"]
 [ext_resource type="Script" path="res://scripts/Player Layer.gd" id="7_h0g0b"]
 [ext_resource type="Script" path="res://scripts/Goal Splash.gd" id="7_qygbx"]
 [ext_resource type="Script" path="res://scripts/Player Left.gd" id="8_2oo0k"]
 [ext_resource type="Texture2D" uid="uid://c8dsqk2on7074" path="res://assets/paddlepurple.png" id="8_ojuyw"]
-[ext_resource type="Texture2D" uid="uid://8wpiodjaimsf" path="res://assets/O.png" id="8_sws53"]
-[ext_resource type="Texture2D" uid="uid://swscpfpbcao0" path="res://assets/A.png" id="9_e1yex"]
 [ext_resource type="Texture2D" uid="uid://cumw3xn8ddbdn" path="res://assets/paddleblue.png" id="9_jjq5k"]
 [ext_resource type="Script" path="res://scripts/Player Right.gd" id="10_sr4sl"]
-[ext_resource type="Texture2D" uid="uid://d1w5rwvm5tv0l" path="res://assets/L.png" id="10_vgobk"]
-[ext_resource type="Texture2D" uid="uid://bsvid6stlhhye" path="res://assets/1.png" id="11_d472w"]
 [ext_resource type="PackedScene" uid="uid://bub76p0i3bnrr" path="res://tscn/ball.tscn" id="12_7qi1f"]
+[ext_resource type="FontFile" uid="uid://ctje33g4vstjo" path="res://fonts/upheavtt.ttf" id="13_o4b3h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
 size = Vector2(2, 42)
@@ -194,8 +190,9 @@ script = ExtResource("6_lasbx")
 
 [node name="Goal Splash" type="Node2D" parent="UI Layer/UI Elements"]
 visible = false
-z_index = 15
-position = Vector2(100, 72.5)
+z_index = 50
+position = Vector2(83, 72.5)
+scale = Vector2(2, 2)
 script = ExtResource("7_qygbx")
 
 [node name="splash_bg" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
@@ -203,25 +200,88 @@ position = Vector2(20, -0.5)
 scale = Vector2(5, 1)
 texture = ExtResource("2_1762v")
 
-[node name="G" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
-position = Vector2(1, 0)
-texture = ExtResource("7_brfyp")
+[node name="Control2" type="Control" parent="UI Layer/UI Elements/Goal Splash"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -41.5
+offset_top = -36.25
+offset_right = 198.5
+offset_bottom = 98.75
+scale = Vector2(0.5, 0.5)
 
-[node name="O" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
-position = Vector2(12, 0)
-texture = ExtResource("8_sws53")
+[node name="LeftWin" type="RichTextLabel" parent="UI Layer/UI Elements/Goal Splash/Control2"]
+z_index = 51
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -5.0
+offset_right = 55.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_o4b3h")
+theme_override_font_sizes/normal_font_size = 18
+text = "GOAL!!"
+fit_content = true
 
-[node name="A" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
-position = Vector2(22, 0)
-texture = ExtResource("9_e1yex")
+[node name="Win Splash" type="Node2D" parent="UI Layer/UI Elements"]
+visible = false
 
-[node name="L" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
-position = Vector2(32, 0)
-texture = ExtResource("10_vgobk")
+[node name="bg" type="Sprite2D" parent="UI Layer/UI Elements/Win Splash"]
+z_index = 50
+position = Vector2(120, 72.5)
+scale = Vector2(20, 20)
+texture = ExtResource("2_1762v")
 
-[node name="!" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
-position = Vector2(43, 0)
-texture = ExtResource("11_d472w")
+[node name="Control" type="Control" parent="UI Layer/UI Elements/Win Splash"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 135.0
+
+[node name="LeftWin" type="RichTextLabel" parent="UI Layer/UI Elements/Win Splash/Control"]
+visible = false
+z_index = 51
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -7.5
+offset_right = 84.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_o4b3h")
+theme_override_font_sizes/normal_font_size = 18
+text = "Left Player Wins!!"
+fit_content = true
+
+[node name="RightWin" type="RichTextLabel" parent="UI Layer/UI Elements/Win Splash/Control"]
+visible = false
+z_index = 51
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -14.5
+offset_right = 94.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_o4b3h")
+theme_override_font_sizes/normal_font_size = 18
+text = "Right Player Wins!!"
+fit_content = true
 
 [node name="Board Layer" type="Node2D" parent="."]
 z_index = 10
