@@ -60,7 +60,7 @@ func _on_goal_west(body:Node) -> void:
 		set_physics_process(false)
 		# kill that ball for respawn
 		body.queue_free()
-		# All one custom signall baby, heading over to UI Elements
+		# All one custom signal baby, heading over to UI Elements
 		goal.emit("Right")
 
 func _on_splash_timer_timeout():

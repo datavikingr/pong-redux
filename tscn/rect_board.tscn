@@ -195,12 +195,12 @@ position = Vector2(83, 72.5)
 scale = Vector2(2, 2)
 script = ExtResource("7_qygbx")
 
-[node name="splash_bg" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
+[node name="bg" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
 position = Vector2(20, -0.5)
 scale = Vector2(5, 1)
 texture = ExtResource("2_1762v")
 
-[node name="Control2" type="Control" parent="UI Layer/UI Elements/Goal Splash"]
+[node name="Control" type="Control" parent="UI Layer/UI Elements/Goal Splash"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -41.5
@@ -209,7 +209,7 @@ offset_right = 198.5
 offset_bottom = 98.75
 scale = Vector2(0.5, 0.5)
 
-[node name="LeftWin" type="RichTextLabel" parent="UI Layer/UI Elements/Goal Splash/Control2"]
+[node name="GOAL" type="RichTextLabel" parent="UI Layer/UI Elements/Goal Splash/Control"]
 z_index = 51
 layout_mode = 1
 anchors_preset = 8
@@ -232,6 +232,7 @@ fit_content = true
 visible = false
 
 [node name="bg" type="Sprite2D" parent="UI Layer/UI Elements/Win Splash"]
+visible = false
 z_index = 50
 position = Vector2(120, 72.5)
 scale = Vector2(20, 20)
@@ -245,7 +246,7 @@ offset_bottom = 135.0
 
 [node name="LeftWin" type="RichTextLabel" parent="UI Layer/UI Elements/Win Splash/Control"]
 visible = false
-z_index = 51
+z_index = 52
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -265,7 +266,7 @@ fit_content = true
 
 [node name="RightWin" type="RichTextLabel" parent="UI Layer/UI Elements/Win Splash/Control"]
 visible = false
-z_index = 51
+z_index = 52
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -512,9 +513,10 @@ debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 [node name="Ball" parent="Player Layer" instance=ExtResource("12_7qi1f")]
 position = Vector2(120, 72.5)
 
+[connection signal="game_over" from="UI Layer/UI Elements" to="Player Layer" method="_on_game_over"]
 [connection signal="goal_splash_begin" from="UI Layer/UI Elements" to="UI Layer/UI Elements/Splash Timer" method="_on_ui_elements_goal_splash_begin"]
-[connection signal="timeout" from="UI Layer/UI Elements/Splash Timer" to="Player Layer" method="_on_splash_timer_timeout"]
 [connection signal="timeout" from="UI Layer/UI Elements/Splash Timer" to="UI Layer/UI Elements/Goal Splash" method="_on_splash_timer_timeout"]
+[connection signal="timeout" from="UI Layer/UI Elements/Splash Timer" to="Player Layer" method="_on_splash_timer_timeout"]
 [connection signal="body_entered" from="Board Layer/Goal West/Goal Line West" to="Player Layer" method="_on_goal_west"]
 [connection signal="body_entered" from="Board Layer/Goal East/Goal Line East" to="Player Layer" method="_on_goal_east"]
 [connection signal="goal" from="Player Layer" to="UI Layer/UI Elements" method="_on_player_layer_goal"]
