@@ -232,7 +232,6 @@ fit_content = true
 visible = false
 
 [node name="bg" type="Sprite2D" parent="UI Layer/UI Elements/Win Splash"]
-visible = false
 z_index = 50
 position = Vector2(120, 72.5)
 scale = Vector2(20, 20)
