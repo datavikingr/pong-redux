@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var ballExplosion : PackedScene # This is ball-kill particle effect
 var ball # Seek and Destroy!! (mostly, but not always)
 var inner_court_size = Vector2(6, 16) #Top-left court bounds
 var outer_court_size = Vector2(234, 129) #Bottom-right court bounds
@@ -46,6 +47,15 @@ func _on_ball_tree_exited() -> void:
 func _on_goal_east(body:Node) -> void:
 	#print("contact east ", body)
 	if body.is_in_group("ball"):
+		# Create the Particle Effect
+		var vfx = ballExplosion.instantiate()
+		# Set its position and rotation relative to the ball
+		vfx.position = body.position
+		vfx.rotation = body.rotation
+		# Turn it on, so actually goes
+		vfx.emitting = true
+		# add the vfx to the scene tree
+		add_child(vfx)
 		# Turn off ball spawning for the goal period
 		set_physics_process(false)
 		# kill that ball for respawn
@@ -56,6 +66,15 @@ func _on_goal_east(body:Node) -> void:
 func _on_goal_west(body:Node) -> void:
 	#print("contact west ", body)
 	if body.is_in_group("ball"):
+		# Create the Particle Effect
+		var vfx = ballExplosion.instantiate()
+		# Set its position and rotation relative to the ball
+		vfx.position = body.position
+		vfx.rotation = body.rotation
+		# Turn it on, so actually goes
+		vfx.emitting = true
+		# add the vfx to the scene tree
+		add_child(vfx)
 		# Turn off ball spawning for the goal period
 		set_physics_process(false)
 		# kill that ball for respawn
