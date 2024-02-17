@@ -1,7 +1,11 @@
 extends RigidBody2D
 
 #var ball #### DEBUGGING FEATURE - JUST DESTROY ####
-@export var speed = 150 # Self evident & pretty quick, too
+@export var speed: int  = 150 # Self evident & pretty quick, too
+@export var playercolor: Color = Color(1, .056, .502)
+
+func _ready():
+	self.modulate = playercolor
 
 func _physics_process(_delta):
 	# Normalize from previous cycle, same as the cal lab: zero before every measurement.

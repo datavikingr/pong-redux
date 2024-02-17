@@ -45,15 +45,22 @@ func _on_ball_tree_exited() -> void:
 	ball = null
 
 func _on_goal_east(body:Node) -> void:
+	# Grab the player's color, so we can the goal explosion
+	var particle_color = get_node("PlayerLeft").playercolor
 	#print("contact east ", body)
 	if body.is_in_group("ball"):
 		# Create the Particle Effect
 		var vfx = ballExplosion.instantiate()
+		# ensure it only happens once
+		vfx.one_shot = true
+		#set the appropirate goal color
+		vfx.modulate = particle_color
 		# Set its position and rotation relative to the ball
 		vfx.position = body.position
 		vfx.rotation = body.rotation
 		# Turn it on, so actually goes
 		vfx.emitting = true
+		vfx.one_shot = true
 		# add the vfx to the scene tree
 		add_child(vfx)
 		# Turn off ball spawning for the goal period
@@ -64,10 +71,16 @@ func _on_goal_east(body:Node) -> void:
 		goal.emit("Left")
 
 func _on_goal_west(body:Node) -> void:
+	# Grab the player's color, so we can the goal explosion
+	var particle_color = get_node("PlayerRight").playercolor
 	#print("contact west ", body)
 	if body.is_in_group("ball"):
 		# Create the Particle Effect
 		var vfx = ballExplosion.instantiate()
+		# ensure it only happens once
+		vfx.one_shot = true
+		#set the appropirate goal color
+		vfx.modulate = particle_color
 		# Set its position and rotation relative to the ball
 		vfx.position = body.position
 		vfx.rotation = body.rotation

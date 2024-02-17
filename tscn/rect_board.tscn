@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://baurjv4dr2yso"]
+[gd_scene load_steps=25 format=3 uid="uid://baurjv4dr2yso"]
 
 [ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_12jnl"]
 [ext_resource type="Texture2D" uid="uid://de12kjkihoviu" path="res://assets/uibar.png" id="2_1762v"]
@@ -8,18 +8,19 @@
 [ext_resource type="Script" path="res://scripts/UI Elements.gd" id="3_hsrre"]
 [ext_resource type="Texture2D" uid="uid://ckww7xlor75aw" path="res://assets/powerupbox.png" id="4_8mcdw"]
 [ext_resource type="Texture2D" uid="uid://c0dwak6er002q" path="res://assets/net.png" id="4_aitcj"]
+[ext_resource type="Script" path="res://scripts/Player Left UI.gd" id="4_i28qo"]
 [ext_resource type="Texture2D" uid="uid://bsqd86neygua2" path="res://assets/goalline.png" id="5_27bcd"]
 [ext_resource type="Script" path="res://scripts/Splash Timer.gd" id="6_lasbx"]
 [ext_resource type="Texture2D" uid="uid://6nb8324ysgpq" path="res://assets/goalposts.png" id="6_xup7u"]
 [ext_resource type="Script" path="res://scripts/Player Layer.gd" id="7_h0g0b"]
+[ext_resource type="Script" path="res://scripts/Player Right UI.gd" id="7_kxmwd"]
 [ext_resource type="Script" path="res://scripts/Goal Splash.gd" id="7_qygbx"]
 [ext_resource type="Script" path="res://scripts/Player Left.gd" id="8_2oo0k"]
-[ext_resource type="Texture2D" uid="uid://c8dsqk2on7074" path="res://assets/paddlepurple.png" id="8_ojuyw"]
-[ext_resource type="Texture2D" uid="uid://cumw3xn8ddbdn" path="res://assets/paddleblue.png" id="9_jjq5k"]
 [ext_resource type="Script" path="res://scripts/Player Right.gd" id="10_sr4sl"]
 [ext_resource type="PackedScene" uid="uid://bub76p0i3bnrr" path="res://tscn/ball.tscn" id="12_7qi1f"]
 [ext_resource type="FontFile" uid="uid://ctje33g4vstjo" path="res://fonts/upheavtt.ttf" id="13_o4b3h"]
 [ext_resource type="PackedScene" uid="uid://cnchnhdhepcde" path="res://tscn/ball_explode.tscn" id="15_iehge"]
+[ext_resource type="Texture2D" uid="uid://bbyguyi1kvf71" path="res://assets/paddlewhite.png" id="19_8ri1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
 size = Vector2(2, 42)
@@ -51,6 +52,7 @@ script = ExtResource("3_hsrre")
 
 [node name="Player Left UI" type="Node2D" parent="UI Layer/UI Elements"]
 position = Vector2(3, 3)
+script = ExtResource("4_i28qo")
 
 [node name="Powerup Box" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
 position = Vector2(6, 2)
@@ -118,6 +120,7 @@ texture = ExtResource("3_c5dut")
 
 [node name="Player Right UI" type="Node2D" parent="UI Layer/UI Elements"]
 position = Vector2(123, 3)
+script = ExtResource("7_kxmwd")
 
 [node name="Powerup Box" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
 position = Vector2(108, 2)
@@ -392,14 +395,14 @@ position = Vector2(7, 72.5)
 
 [node name="Goal Line West" type="RigidBody2D" parent="Board Layer/Goal West"]
 mass = 1000.0
-inertia = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
-max_contacts_reported = 10
-contact_monitor = true
+inertia = 1000.0
 lock_rotation = true
 freeze = true
 freeze_mode = 1
+max_contacts_reported = 10
+contact_monitor = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal West/Goal Line West"]
 rotation = -3.14159
@@ -437,14 +440,14 @@ position = Vector2(233, 72.5)
 
 [node name="Goal Line East" type="RigidBody2D" parent="Board Layer/Goal East"]
 mass = 1000.0
-inertia = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
-max_contacts_reported = 10
-contact_monitor = true
+inertia = 1000.0
 lock_rotation = true
 freeze = true
 freeze_mode = 1
+max_contacts_reported = 10
+contact_monitor = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal East/Goal Line East"]
 scale = Vector2(1, 3.5)
@@ -482,30 +485,34 @@ script = ExtResource("7_h0g0b")
 ballExplosion = ExtResource("15_iehge")
 
 [node name="PlayerLeft" type="RigidBody2D" parent="Player Layer"]
+unique_name_in_owner = true
 position = Vector2(20, 72.5)
 mass = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("8_2oo0k")
+playercolor = Color(1, 0.054902, 0.501961, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player Layer/PlayerLeft"]
-texture = ExtResource("8_ojuyw")
+texture = ExtResource("19_8ri1g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/PlayerLeft"]
 shape = SubResource("CapsuleShape2D_851qf")
 debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 
 [node name="PlayerRight" type="RigidBody2D" parent="Player Layer"]
+unique_name_in_owner = true
 position = Vector2(220, 72.5)
 mass = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("10_sr4sl")
+playercolor = Color(0.4, 0.133333, 0.8, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player Layer/PlayerRight"]
-texture = ExtResource("9_jjq5k")
+texture = ExtResource("19_8ri1g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/PlayerRight"]
 shape = SubResource("CapsuleShape2D_851qf")

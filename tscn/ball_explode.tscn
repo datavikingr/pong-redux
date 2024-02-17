@@ -16,25 +16,20 @@ curve = SubResource("Curve_p8omf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ud8gn"]
 lifetime_randomness = 0.5
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 2.0
-particle_flag_disable_z = true
 spread = 90.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 500.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_min = 2.0
-scale_max = 40.0
+scale_max = 15.0
 scale_curve = SubResource("CurveTexture_pqrvi")
 color_ramp = SubResource("GradientTexture1D_b7dos")
-hue_variation_min = -0.45
-hue_variation_max = 0.19
 
 [node name="ball_explode" type="GPUParticles2D"]
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_ud8gn")
-one_shot = true
 explosiveness = 1.0
