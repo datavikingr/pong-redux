@@ -33,6 +33,8 @@ hue_variation_min = -0.45
 hue_variation_max = 0.19
 
 [node name="ball_explode" type="GPUParticles2D"]
+emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_ud8gn")
+one_shot = true
 explosiveness = 1.0
