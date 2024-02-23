@@ -1,26 +1,559 @@
-[gd_scene load_steps=5 format=3 uid="uid://ra5xfalpv1o4"]
+[gd_scene load_steps=26 format=3 uid="uid://baurjv4dr2yso"]
 
-[ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_1qypu"]
-[ext_resource type="PackedScene" uid="uid://do3clrh3x5egm" path="res://tscn/paddle.tscn" id="1_igvim"]
-[ext_resource type="PackedScene" uid="uid://c5aem352ujhqb" path="res://tscn/board.tscn" id="2_4d4tp"]
-[ext_resource type="PackedScene" uid="uid://cw0m7lt7jupgt" path="res://tscn/paddle2.tscn" id="4_30e65"]
+[ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_12jnl"]
+[ext_resource type="Texture2D" uid="uid://de12kjkihoviu" path="res://assets/uibar.png" id="2_1762v"]
+[ext_resource type="PhysicsMaterial" uid="uid://b6865v8dn6cqp" path="res://tres/wall.tres" id="2_q337k"]
+[ext_resource type="Texture2D" uid="uid://c36i40ikkmnwo" path="res://assets/wall.png" id="3_4rrsi"]
+[ext_resource type="Texture2D" uid="uid://cg133atwqqek2" path="res://assets/ball.png" id="3_c5dut"]
+[ext_resource type="Script" path="res://scripts/UI Elements.gd" id="3_hsrre"]
+[ext_resource type="Texture2D" uid="uid://ckww7xlor75aw" path="res://assets/powerupbox.png" id="4_8mcdw"]
+[ext_resource type="Texture2D" uid="uid://c0dwak6er002q" path="res://assets/net.png" id="4_aitcj"]
+[ext_resource type="Script" path="res://scripts/Player Left UI.gd" id="4_i28qo"]
+[ext_resource type="Texture2D" uid="uid://bsqd86neygua2" path="res://assets/goalline.png" id="5_27bcd"]
+[ext_resource type="Script" path="res://scripts/Splash Timer.gd" id="6_lasbx"]
+[ext_resource type="Texture2D" uid="uid://6nb8324ysgpq" path="res://assets/goalposts.png" id="6_xup7u"]
+[ext_resource type="Script" path="res://scripts/Player Layer.gd" id="7_h0g0b"]
+[ext_resource type="Script" path="res://scripts/Player Right UI.gd" id="7_kxmwd"]
+[ext_resource type="Script" path="res://scripts/Goal Splash.gd" id="7_qygbx"]
+[ext_resource type="Script" path="res://scripts/Player Left.gd" id="8_2oo0k"]
+[ext_resource type="Script" path="res://scripts/Player Right.gd" id="10_sr4sl"]
+[ext_resource type="PackedScene" uid="uid://bub76p0i3bnrr" path="res://tscn/ball.tscn" id="12_7qi1f"]
+[ext_resource type="FontFile" uid="uid://ctje33g4vstjo" path="res://fonts/upheavtt.ttf" id="13_o4b3h"]
+[ext_resource type="PackedScene" uid="uid://cnchnhdhepcde" path="res://tscn/ball_explode.tscn" id="15_iehge"]
+[ext_resource type="PackedScene" uid="uid://lmrmicqgb4p5" path="res://tscn/brick.tscn" id="16_cyw4i"]
+[ext_resource type="Texture2D" uid="uid://bbyguyi1kvf71" path="res://assets/paddlewhite.png" id="19_8ri1g"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
+size = Vector2(2, 42)
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(120, 33)
-texture = ExtResource("1_1qypu")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muysb"]
+size = Vector2(2, 2)
 
-[node name="Board" parent="." instance=ExtResource("2_4d4tp")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_851qf"]
+radius = 2.0
+height = 12.5
+
+[node name="main" type="Node2D"]
+
+[node name="UI Layer" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="UI Layer"]
+position = Vector2(120, 29.5)
+texture = ExtResource("1_12jnl")
+
+[node name="uibar" type="Sprite2D" parent="UI Layer"]
+z_index = 1
+position = Vector2(120, 5)
+scale = Vector2(20, 0.835)
+texture = ExtResource("2_1762v")
+
+[node name="UI Elements" type="Node2D" parent="UI Layer"]
+z_index = 3
+script = ExtResource("3_hsrre")
+
+[node name="Player Left UI" type="Node2D" parent="UI Layer/UI Elements"]
+position = Vector2(3, 3)
+script = ExtResource("4_i28qo")
+
+[node name="Powerup Box" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+position = Vector2(6, 2)
+texture = ExtResource("4_8mcdw")
+
+[node name="ScoreBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(20, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(28, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall3" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(36, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall4" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(44, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall5" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(52, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall6" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(60, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall7" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(68, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall8" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(76, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall9" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(84, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall10" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(92, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="RoundBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(0.823529, 0.823529, 0.247059, 0.247059)
+position = Vector2(103, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="RoundBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Left UI"]
+modulate = Color(0.823529, 0.823529, 0.247059, 0.247059)
+position = Vector2(111, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="Player Right UI" type="Node2D" parent="UI Layer/UI Elements"]
+position = Vector2(123, 3)
+script = ExtResource("7_kxmwd")
+
+[node name="Powerup Box" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+position = Vector2(108, 2)
+texture = ExtResource("4_8mcdw")
+
+[node name="ScoreBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(94, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(86, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall3" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(78, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall4" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(70, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall5" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(62, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall6" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(54, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall7" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(46, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall8" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(38, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall9" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(30, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="ScoreBall10" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(1, 1, 1, 0.247059)
+position = Vector2(22, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="RoundBall1" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(0.823529, 0.823529, 0.247059, 0.247059)
+position = Vector2(11, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="RoundBall2" type="Sprite2D" parent="UI Layer/UI Elements/Player Right UI"]
+modulate = Color(0.823529, 0.823529, 0.247059, 0.247059)
+position = Vector2(3, 2)
+texture = ExtResource("3_c5dut")
+
+[node name="Splash Timer" type="Timer" parent="UI Layer/UI Elements"]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+script = ExtResource("6_lasbx")
+
+[node name="Goal Splash" type="Node2D" parent="UI Layer/UI Elements"]
+visible = false
+z_index = 50
+position = Vector2(83, 72.5)
+scale = Vector2(2, 2)
+script = ExtResource("7_qygbx")
+
+[node name="bg" type="Sprite2D" parent="UI Layer/UI Elements/Goal Splash"]
+position = Vector2(20, -0.5)
+scale = Vector2(5, 1)
+texture = ExtResource("2_1762v")
+
+[node name="Control" type="Control" parent="UI Layer/UI Elements/Goal Splash"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -41.5
+offset_top = -36.25
+offset_right = 198.5
+offset_bottom = 98.75
+scale = Vector2(0.5, 0.5)
+
+[node name="GOAL" type="RichTextLabel" parent="UI Layer/UI Elements/Goal Splash/Control"]
+z_index = 51
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -5.0
+offset_right = 55.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_o4b3h")
+theme_override_font_sizes/normal_font_size = 18
+text = "GOAL!!"
+fit_content = true
+
+[node name="Win Splash" type="Node2D" parent="UI Layer/UI Elements"]
+visible = false
+
+[node name="bg" type="Sprite2D" parent="UI Layer/UI Elements/Win Splash"]
+z_index = 50
+position = Vector2(120, 72.5)
+scale = Vector2(20, 20)
+texture = ExtResource("2_1762v")
+
+[node name="Control" type="Control" parent="UI Layer/UI Elements/Win Splash"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 135.0
+
+[node name="LeftWin" type="RichTextLabel" parent="UI Layer/UI Elements/Win Splash/Control"]
+visible = false
+z_index = 52
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -7.5
+offset_right = 84.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_o4b3h")
+theme_override_font_sizes/normal_font_size = 18
+text = "Left Player Wins!!"
+fit_content = true
+
+[node name="RightWin" type="RichTextLabel" parent="UI Layer/UI Elements/Win Splash/Control"]
+visible = false
+z_index = 52
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -14.5
+offset_right = 94.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_o4b3h")
+theme_override_font_sizes/normal_font_size = 18
+text = "Right Player Wins!!"
+fit_content = true
+
+[node name="Board Layer" type="Node2D" parent="."]
+z_index = 10
+
+[node name="Walls" type="StaticBody2D" parent="Board Layer"]
+physics_material_override = ExtResource("2_q337k")
+
+[node name="North Wall" type="StaticBody2D" parent="Board Layer/Walls"]
+position = Vector2(120, 13)
+rotation = 1.5708
+scale = Vector2(1, 20)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Walls/North Wall"]
+texture = ExtResource("3_4rrsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls/North Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
+
+[node name="East Wall" type="StaticBody2D" parent="Board Layer/Walls"]
+position = Vector2(237, 72.5)
+scale = Vector2(1, 10.42)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Walls/East Wall"]
+texture = ExtResource("3_4rrsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls/East Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
+
+[node name="South Wall" type="StaticBody2D" parent="Board Layer/Walls"]
+position = Vector2(120, 132)
+rotation = 1.5708
+scale = Vector2(1, 20)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Walls/South Wall"]
+texture = ExtResource("3_4rrsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls/South Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
+
+[node name="West Wall" type="StaticBody2D" parent="Board Layer/Walls"]
+position = Vector2(3, 72.5)
+scale = Vector2(1, 10.42)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Walls/West Wall"]
+texture = ExtResource("3_4rrsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls/West Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-3, -6, -3, 6, 3, 6, 3, -6)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Board Layer/Walls"]
+polygon = PackedVector2Array(120, 16, 120, 10, 0, 10, 0, 135, 240, 135, 240, 10, 120, 10, 120, 16, 234, 16, 234, 129, 6, 129, 6, 16)
+
+[node name="Center Net" type="Node2D" parent="Board Layer"]
+modulate = Color(1, 1, 1, 0.258824)
+position = Vector2(120, 16)
+
+[node name="Net1" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 7)
+texture = ExtResource("4_aitcj")
+
+[node name="Net2" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 19)
+texture = ExtResource("4_aitcj")
+
+[node name="Net3" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 31)
+texture = ExtResource("4_aitcj")
+
+[node name="Net4" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 43)
+texture = ExtResource("4_aitcj")
+
+[node name="Net5" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 55)
+texture = ExtResource("4_aitcj")
+
+[node name="Net6" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 67)
+texture = ExtResource("4_aitcj")
+
+[node name="Net7" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 79)
+texture = ExtResource("4_aitcj")
+
+[node name="Net8" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 91)
+texture = ExtResource("4_aitcj")
+
+[node name="Net9" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 103)
+texture = ExtResource("4_aitcj")
+
+[node name="Net10" type="Sprite2D" parent="Board Layer/Center Net"]
+position = Vector2(0, 115)
+texture = ExtResource("4_aitcj")
+
+[node name="Goal West" type="Node2D" parent="Board Layer"]
+position = Vector2(7, 72.5)
+
+[node name="Goal Line West" type="RigidBody2D" parent="Board Layer/Goal West"]
+mass = 1000.0
+physics_material_override = ExtResource("2_q337k")
+gravity_scale = 0.0
+inertia = 1000.0
+lock_rotation = true
+freeze = true
+freeze_mode = 1
+max_contacts_reported = 10
+contact_monitor = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal West/Goal Line West"]
+rotation = -3.14159
+scale = Vector2(1, 3.5)
+texture = ExtResource("5_27bcd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal West/Goal Line West"]
+position = Vector2(-9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ojja3")
+
+[node name="Goal Post West-North" type="StaticBody2D" parent="Board Layer/Goal West"]
+position = Vector2(1, -23)
+scale = Vector2(2, 2)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal West/Goal Post West-North"]
+texture = ExtResource("6_xup7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal West/Goal Post West-North"]
+shape = SubResource("RectangleShape2D_muysb")
+
+[node name="Goal Post West-South" type="StaticBody2D" parent="Board Layer/Goal West"]
+position = Vector2(1, 23)
+scale = Vector2(2, 2)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal West/Goal Post West-South"]
+texture = ExtResource("6_xup7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal West/Goal Post West-South"]
+shape = SubResource("RectangleShape2D_muysb")
+
+[node name="Goal East" type="Node2D" parent="Board Layer"]
+position = Vector2(233, 72.5)
+
+[node name="Goal Line East" type="RigidBody2D" parent="Board Layer/Goal East"]
+mass = 1000.0
+physics_material_override = ExtResource("2_q337k")
+gravity_scale = 0.0
+inertia = 1000.0
+lock_rotation = true
+freeze = true
+freeze_mode = 1
+max_contacts_reported = 10
+contact_monitor = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal East/Goal Line East"]
+scale = Vector2(1, 3.5)
+texture = ExtResource("5_27bcd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal East/Goal Line East"]
+position = Vector2(-9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ojja3")
+
+[node name="Goal Post East-North" type="StaticBody2D" parent="Board Layer/Goal East"]
+position = Vector2(-1, -23)
+scale = Vector2(2, 2)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal East/Goal Post East-North"]
+texture = ExtResource("6_xup7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal East/Goal Post East-North"]
+shape = SubResource("RectangleShape2D_muysb")
+
+[node name="Goal Post East-South" type="StaticBody2D" parent="Board Layer/Goal East"]
+position = Vector2(-1, 23)
+scale = Vector2(2, 2)
+physics_material_override = ExtResource("2_q337k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board Layer/Goal East/Goal Post East-South"]
+texture = ExtResource("6_xup7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal East/Goal Post East-South"]
+shape = SubResource("RectangleShape2D_muysb")
+
+[node name="Bricks" type="Node2D" parent="Board Layer"]
+
+[node name="Brick" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
+position = Vector2(120, 62)
+
+[node name="Brick2" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
+position = Vector2(120, 50)
+
+[node name="Brick3" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
+position = Vector2(120, 38)
+
+[node name="Brick4" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
+position = Vector2(120, 26)
+
+[node name="Brick5" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
+position = Vector2(120, 119)
+
+[node name="Brick6" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
+position = Vector2(120, 107)
+
+[node name="Brick7" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
+position = Vector2(120, 95)
+
+[node name="Brick8" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
+position = Vector2(120, 83)
+
+[node name="Player Layer" type="Node2D" parent="."]
+z_index = 20
+script = ExtResource("7_h0g0b")
+ballExplosion = ExtResource("15_iehge")
+
+[node name="PlayerLeft" type="RigidBody2D" parent="Player Layer"]
 unique_name_in_owner = true
+position = Vector2(20, 72.5)
+mass = 1000.0
+physics_material_override = ExtResource("2_q337k")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("8_2oo0k")
+playercolor = Color(0.756863, 0.137255, 0.435294, 1)
 
-[node name="Paddle1" parent="." instance=ExtResource("1_igvim")]
-z_index = 2
-position = Vector2(30, 67)
-speed = 150
+[node name="Sprite2D" type="Sprite2D" parent="Player Layer/PlayerLeft"]
+texture = ExtResource("19_8ri1g")
 
-[node name="Paddle2" parent="." instance=ExtResource("4_30e65")]
-position = Vector2(210, 67)
-speed = 150
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/PlayerLeft"]
+shape = SubResource("CapsuleShape2D_851qf")
+debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 
-[editable path="Board"]
+[node name="PlayerRight" type="RigidBody2D" parent="Player Layer"]
+unique_name_in_owner = true
+position = Vector2(220, 72.5)
+mass = 1000.0
+physics_material_override = ExtResource("2_q337k")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("10_sr4sl")
+playercolor = Color(0.4, 0.133333, 0.8, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player Layer/PlayerRight"]
+texture = ExtResource("19_8ri1g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/PlayerRight"]
+shape = SubResource("CapsuleShape2D_851qf")
+debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
+
+[node name="Ball" parent="Player Layer" instance=ExtResource("12_7qi1f")]
+position = Vector2(120, 72.5)
+
+[connection signal="game_over" from="UI Layer/UI Elements" to="Player Layer" method="_on_game_over"]
+[connection signal="goal_splash_begin" from="UI Layer/UI Elements" to="UI Layer/UI Elements/Splash Timer" method="_on_ui_elements_goal_splash_begin"]
+[connection signal="timeout" from="UI Layer/UI Elements/Splash Timer" to="UI Layer/UI Elements/Goal Splash" method="_on_splash_timer_timeout"]
+[connection signal="timeout" from="UI Layer/UI Elements/Splash Timer" to="Player Layer" method="_on_splash_timer_timeout"]
+[connection signal="body_entered" from="Board Layer/Goal West/Goal Line West" to="Player Layer" method="_on_goal_west"]
+[connection signal="body_entered" from="Board Layer/Goal East/Goal Line East" to="Player Layer" method="_on_goal_east"]
+[connection signal="goal" from="Player Layer" to="UI Layer/UI Elements" method="_on_player_layer_goal"]
+
+[editable path="Player Layer/Ball"]

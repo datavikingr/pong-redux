@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @export var speed = 200 # starting speed
 @export var min_speed = 100 # pretty obvious
-@export var max_speed = 300 # also self-evident
+@export var max_speed = 200 # also self-evident
 
 func _ready():
 	# random seed, baby, Roll them dice!

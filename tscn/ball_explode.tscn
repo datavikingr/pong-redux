@@ -27,9 +27,10 @@ scale_min = 2.0
 scale_max = 15.0
 scale_curve = SubResource("CurveTexture_pqrvi")
 color_ramp = SubResource("GradientTexture1D_b7dos")
+hue_variation_min = -0.03
+hue_variation_max = 0.03
 
 [node name="ball_explode" type="GPUParticles2D"]
-emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_ud8gn")
 explosiveness = 1.0
