@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dawmoc887fx1x"]
+
+[ext_resource type="PackedScene" uid="uid://lmrmicqgb4p5" path="res://tscn/brick.tscn" id="1_vmqu7"]
+
+[node name="Bricks West" type="Node2D"]
+
+[node name="Brick W1" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(12, 52.5)
+
+[node name="Brick W2" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(12, 62.5)
+
+[node name="Brick W3" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(12, 72.5)
+
+[node name="Brick W4" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(12, 82.5)
+
+[node name="Brick W5" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(12, 92.5)
+
+[node name="Brick W6" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(16, 52.5)
+
+[node name="Brick W7" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(16, 62.5)
+
+[node name="Brick W8" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(16, 72.5)
+
+[node name="Brick W9" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(16, 82.5)
+
+[node name="Brick W10" parent="." instance=ExtResource("1_vmqu7")]
+position = Vector2(16, 92.5)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://baurjv4dr2yso"]
+[gd_scene load_steps=27 format=3 uid="uid://baurjv4dr2yso"]
 
 [ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_12jnl"]
 [ext_resource type="Texture2D" uid="uid://de12kjkihoviu" path="res://assets/uibar.png" id="2_1762v"]
@@ -20,8 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://bub76p0i3bnrr" path="res://tscn/ball.tscn" id="12_7qi1f"]
 [ext_resource type="FontFile" uid="uid://ctje33g4vstjo" path="res://fonts/upheavtt.ttf" id="13_o4b3h"]
 [ext_resource type="PackedScene" uid="uid://cnchnhdhepcde" path="res://tscn/ball_explode.tscn" id="15_iehge"]
-[ext_resource type="PackedScene" uid="uid://lmrmicqgb4p5" path="res://tscn/brick.tscn" id="16_cyw4i"]
+[ext_resource type="PackedScene" uid="uid://3a0e5lm2ujyu" path="res://tscn/bricks_east.tscn" id="18_nuqjc"]
 [ext_resource type="Texture2D" uid="uid://bbyguyi1kvf71" path="res://assets/paddlewhite.png" id="19_8ri1g"]
+[ext_resource type="PackedScene" uid="uid://dawmoc887fx1x" path="res://tscn/bricks_west.tscn" id="19_uu3yf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
 size = Vector2(2, 42)
@@ -480,40 +481,16 @@ texture = ExtResource("6_xup7u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Board Layer/Goal East/Goal Post East-South"]
 shape = SubResource("RectangleShape2D_muysb")
 
-[node name="Bricks" type="Node2D" parent="Board Layer"]
-
-[node name="Brick" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
-position = Vector2(120, 62)
-
-[node name="Brick2" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
-position = Vector2(120, 50)
-
-[node name="Brick3" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
-position = Vector2(120, 38)
-
-[node name="Brick4" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
-position = Vector2(120, 26)
-
-[node name="Brick5" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
-position = Vector2(120, 119)
-
-[node name="Brick6" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
-position = Vector2(120, 107)
-
-[node name="Brick7" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
-position = Vector2(120, 95)
-
-[node name="Brick8" parent="Board Layer/Bricks" instance=ExtResource("16_cyw4i")]
-position = Vector2(120, 83)
-
 [node name="Player Layer" type="Node2D" parent="."]
 z_index = 20
 script = ExtResource("7_h0g0b")
 ballExplosion = ExtResource("15_iehge")
+eastbricks = ExtResource("18_nuqjc")
+westbricks = ExtResource("19_uu3yf")
 
-[node name="PlayerLeft" type="RigidBody2D" parent="Player Layer"]
+[node name="Player West" type="RigidBody2D" parent="Player Layer"]
 unique_name_in_owner = true
-position = Vector2(20, 72.5)
+position = Vector2(30, 72.5)
 mass = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
@@ -521,16 +498,16 @@ lock_rotation = true
 script = ExtResource("8_2oo0k")
 playercolor = Color(0.756863, 0.137255, 0.435294, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Player Layer/PlayerLeft"]
+[node name="Sprite2D" type="Sprite2D" parent="Player Layer/Player West"]
 texture = ExtResource("19_8ri1g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/PlayerLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/Player West"]
 shape = SubResource("CapsuleShape2D_851qf")
 debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 
-[node name="PlayerRight" type="RigidBody2D" parent="Player Layer"]
+[node name="Player East" type="RigidBody2D" parent="Player Layer"]
 unique_name_in_owner = true
-position = Vector2(220, 72.5)
+position = Vector2(209.515, 72.5)
 mass = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
@@ -538,15 +515,19 @@ lock_rotation = true
 script = ExtResource("10_sr4sl")
 playercolor = Color(0.4, 0.133333, 0.8, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Player Layer/PlayerRight"]
+[node name="Sprite2D" type="Sprite2D" parent="Player Layer/Player East"]
 texture = ExtResource("19_8ri1g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/PlayerRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/Player East"]
 shape = SubResource("CapsuleShape2D_851qf")
 debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 
 [node name="Ball" parent="Player Layer" instance=ExtResource("12_7qi1f")]
 position = Vector2(120, 72.5)
+
+[node name="Bricks West" parent="Player Layer" instance=ExtResource("19_uu3yf")]
+
+[node name="Bricks East" parent="Player Layer" instance=ExtResource("18_nuqjc")]
 
 [connection signal="game_over" from="UI Layer/UI Elements" to="Player Layer" method="_on_game_over"]
 [connection signal="goal_splash_begin" from="UI Layer/UI Elements" to="UI Layer/UI Elements/Splash Timer" method="_on_ui_elements_goal_splash_begin"]

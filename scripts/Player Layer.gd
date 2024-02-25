@@ -1,113 +1,95 @@
 extends Node2D
 
 @export var ballExplosion : PackedScene # This is ball-kill particle effect
+@export var eastbricks : PackedScene # Breakout bricks in front of the east goal
+@export var westbricks : PackedScene # Breakout bricks in front of the west goal
 var ball # Seek and Destroy!! (mostly, but not always)
 var inner_court_size = Vector2(6, 16) #Top-left court bounds
 var outer_court_size = Vector2(234, 129) #Bottom-right court bounds
+var particle_color # goal explosion colors
+var vfx # the goal explosion particle effects
 signal goal(player:String) #All one signal, baby!!
 
 func _ready() -> void:
-	# Find that ball, for positional tracking
-	ball = get_node("Ball")
+	ball = get_node("Ball") # Find that ball, for positional tracking
 
 func _physics_process(_delta) -> void:
 	if ball == null: #Then the ball's dead
-		#make a new one!!
-		spawn_ball()
-		# Set the variable
-		ball = get_node_or_null("Ball")
+		spawn_ball() #make a new one!!
+		ball = get_node_or_null("Ball") # Set the variable
 	elif ball != null: # We have a ball!
-		# Find it!
-		var current_position = ball.get_position()
+		var current_position = ball.get_position() # Find it!
 		# See if the ball popped out of bounds
 		if current_position.x > outer_court_size.x or current_position.y > outer_court_size.y or current_position.x < inner_court_size.x or current_position.y < inner_court_size.y:
-			# kill it
-			ball.queue_free()
-			# reset the ball variable most notably for the above
-			ball = null
+			var ball_color = Color("#ffffff")
+			goal_explosion(ball_color, ball)
+			ball.queue_free() # kill it
+			ball = null # reset the ball variable most notably for the above
 
 func spawn_ball() -> void:
-	#load scene
-	var ball_scene = load("res://tscn/ball.tscn")
-	# create the scene
-	var new_ball = ball_scene.instantiate()
-	# Set the name of the new node to "Ball"
-	new_ball.name = "Ball"  
-	# Center ball
-	new_ball.position = Vector2(outer_court_size.x/2, outer_court_size.y/2)
-	# Attach it to the player layer
-	add_child(new_ball)
-	# Set the variable for use all over this script
-	ball = get_node("Ball") 
-
-func _on_ball_tree_exited() -> void:
-	# If the ball gets killed, we should reset the variable
-	ball = null
+	var ball_scene = load("res://tscn/ball.tscn") #load scene
+	var new_ball = ball_scene.instantiate() # create the scene
+	new_ball.name = "Ball" # Set the name of the new node to "Ball"
+	new_ball.position = Vector2(outer_court_size.x/2, outer_court_size.y/2) # Center ball
+	add_child(new_ball)# Attach it to the player layer
+	ball = get_node("Ball") # Set the variable for use all over this script
 
 func _on_goal_east(body:Node) -> void:
-	# Grab the player's color, so we can the goal explosion
-	var particle_color = get_node("PlayerLeft").playercolor
+	particle_color = get_node("Player West").playercolor # Grab the player's color, so we can colorize the goal explosion
 	#print("contact east ", body)
 	if body.is_in_group("ball"):
-		# Create the Particle Effect
-		var vfx = ballExplosion.instantiate()
-		# ensure it only happens once
-		vfx.one_shot = true
-		#set the appropirate goal color
-		vfx.modulate = particle_color
-		# Set its position and rotation relative to the ball
-		vfx.position = body.position
-		vfx.rotation = body.rotation
-		# Turn it on, so actually goes
-		vfx.emitting = true
-		vfx.one_shot = true
-		# add the vfx to the scene tree
-		add_child(vfx)
-		# Turn off ball spawning for the goal period
-		set_physics_process(false)
-		# kill that ball for respawn
-		body.queue_free()
-		# All one custom signall baby, heading over to UI Elements
-		goal.emit("Left")
+		## GOAL EXPLOSION
+		goal_explosion(particle_color, body)
+		set_physics_process(false) # Turn off ball spawning for the goal period
+		body.queue_free() # kill that ball for respawn; called last to 'hide' the disappearance
+		reset_bricks("East") # clear and re-spawn the bricks
+		goal.emit("Left") # All one custom signall baby, heading over to UI Elements
 
 func _on_goal_west(body:Node) -> void:
-	# Grab the player's color, so we can the goal explosion
-	var particle_color = get_node("PlayerRight").playercolor
+	particle_color = get_node("Player East").playercolor # Grab the player's color, so we can colorize the goal explosion
 	#print("contact west ", body)
 	if body.is_in_group("ball"):
-		# Create the Particle Effect
-		var vfx = ballExplosion.instantiate()
-		# ensure it only happens once
-		vfx.one_shot = true
-		#set the appropirate goal color
-		vfx.modulate = particle_color
-		# Set its position and rotation relative to the ball
-		vfx.position = body.position
-		vfx.rotation = body.rotation
-		# Turn it on, so actually goes
-		vfx.emitting = true
-		# add the vfx to the scene tree
-		add_child(vfx)
-		# Turn off ball spawning for the goal period
-		set_physics_process(false)
-		# kill that ball for respawn
-		body.queue_free()
-		# All one custom signal baby, heading over to UI Elements
-		goal.emit("Right")
+		## GOAL EXPLOSION
+		goal_explosion(particle_color, body)
+		set_physics_process(false) # Turn off ball spawning for the goal period
+		body.queue_free() # kill that ball for respawn; called last to 'hide' the disappearance
+		reset_bricks("West") # clear and re-spawn the bricks
+		goal.emit("Right") # All one custom signall baby, heading over to UI Elements
+
+func reset_bricks(half_of_field:String) -> void:
+	var old_bricks_name = "Bricks "+half_of_field 
+	var old_bricks = get_node(old_bricks_name)
+	old_bricks.free()
+	if half_of_field == "East":
+		var new_bricks = eastbricks.instantiate()
+		add_child(new_bricks)
+		new_bricks.name = "Bricks East"
+	else:
+		var new_bricks = westbricks.instantiate()
+		add_child(new_bricks)
+		new_bricks.name = "Bricks West"
+
+func goal_explosion(particlecolor, ballbody):
+	vfx = ballExplosion.instantiate() # Create the Particle Effect
+	vfx.one_shot = true # ensure it only happens once
+	vfx.modulate = particlecolor #set the appropirate goal color
+	vfx.position = ballbody.position # Set its position and rotation relative to the ball
+	vfx.rotation = ballbody.rotation # Set its position and rotation relative to the ball
+	vfx.emitting = true # Turn it on, so actually goes
+	add_child(vfx) # add the vfx to the scene tree
+	vfx.name = ("Explosion")
 
 func _on_splash_timer_timeout():
-	# Turn ball spawn back on
-	set_physics_process(true)
-
+	set_physics_process(true)# Turn ball spawn back on
+	vfx = get_node("Explosion")
+	vfx.queue_free()
 
 func _on_game_over():
-	# Turn ball spawning off
-	set_physics_process(false)
-	# Seek and Destroy, one final time
-	ball = get_node("Ball")
+	set_physics_process(false) # Turn ball spawning off
+	ball = get_node("Ball") # Seek and Destroy, one final time
 	ball.queue_free()
 	# Bring the players, up and out of the ball or wall space and over the text (52)
-	get_node("PlayerLeft").set_z_index(53)
-	get_node("PlayerLeft").set_collision_layer(2)
-	get_node("PlayerRight").set_z_index(53)
-	get_node("PlayerRight").set_collision_layer(2)
+	get_node("Player West").set_z_index(53)
+	get_node("Player West").set_collision_layer(2)
+	get_node("Player East").set_z_index(53)
+	get_node("Player East").set_collision_layer(2)

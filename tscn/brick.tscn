@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://lmrmicqgb4p5"]
+[gd_scene load_steps=5 format=3 uid="uid://lmrmicqgb4p5"]
 
 [ext_resource type="Script" path="res://scripts/brick.gd" id="1_7xsdr"]
 [ext_resource type="Texture2D" uid="uid://p0oxvb5l72sn" path="res://assets/Brick.png" id="1_diav5"]
+[ext_resource type="Script" path="res://scripts/deathtimer.gd" id="3_ubpv3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cicp6"]
 size = Vector2(4, 10)
@@ -23,3 +24,11 @@ shape = SubResource("RectangleShape2D_cicp6")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 texture = ExtResource("1_diav5")
+
+[node name="Timer" type="Timer" parent="RigidBody2D"]
+wait_time = 0.05
+one_shot = true
+script = ExtResource("3_ubpv3")
+
+[connection signal="deathtimer" from="RigidBody2D" to="RigidBody2D/Timer" method="_on_deathtimer"]
+[connection signal="timeout" from="RigidBody2D/Timer" to="RigidBody2D" method="_on_timer_timeout"]

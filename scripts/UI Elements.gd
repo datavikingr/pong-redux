@@ -14,54 +14,40 @@ var player_win_text # Which Congratulations are we posting?
 var player_layer # Communication channels reasons -appears unused
 
 func win(player: String):
-	# Turning off the Ball repawn; connects to player layer #COMMO
-	game_over.emit()
-	# Grab the node
-	win_ui = get_node("Win Splash")
-	# Unhide it, for all the world to see
-	win_ui.visible = true
-	# Whose congrats are we rasing, furreal?
-	if player == "Left":
+	game_over.emit() # Turning off the Ball repawn; connects to player layer #COMMO
+	win_ui = get_node("Win Splash") # Grab the node
+	win_ui.visible = true # Unhide it, for all the world to see
+	if player == "Left": # Whose congrats are we rasing, furreal?
 		player_win_text = win_ui.get_node("Control").get_node("LeftWin")
 		player_win_text.visible = true
 	else:
 		player_win_text = win_ui.get_node("Control").get_node("RightWin")
 		player_win_text.visible = true
 
-func _ready() -> void:
-	# Set up occurred in the editor
-	pass
-
 func _on_player_layer_goal(player):
-	#double check no carry-over data from last score
+# double check no carry-over data from last score
 	ball_name = null
 	scoring_player = null
 	highlight_ball = null
-	#Begin Score logic
+# Begin Score logic
 	if player == "Left": 
-		# Turns the goal splash timer on, which turns on the on-screen notification
-		goal_splash_begin.emit()
-		# add points
-		leftscore += 1
-		# Find the appropriate 'scoreball'
-		ball_name = "ScoreBall"+str(leftscore)
-		# Make sure we're looking at the correct set of UI elements
-		scoring_player = get_node("Player Left UI")
-		# Actually grab the scoreball set two lines above
-		highlight_ball = scoring_player.get_node(ball_name)
-		# Highlight the bad boi, so the players can see the score
-		highlight_ball.modulate.a = 1
+		goal_splash_begin.emit() # Turns the goal splash timer on, which turns on the on-screen notification
+		leftscore += 1 # add points
+		ball_name = "ScoreBall"+str(leftscore) # Find the appropriate 'scoreball'
+		scoring_player = get_node("Player Left UI") # Make sure we're looking at the correct set of UI elements
+		highlight_ball = scoring_player.get_node(ball_name) # Actually grab the scoreball set two lines above
+		highlight_ball.modulate.a = 1 # Highlight the bad boi, so the players can see the score
 		if leftscore >= 10: # This is round win condition
-			# Reset scores for the round - left and right
+# Reset scores for the round - left and right
 			leftscore = 0
 			rightscore = 0
-			# Undo any highlighting above
+# Undo any highlighting above
 			for i in range(1,11):
 				ball_name = "ScoreBall"+str(i)
 				highlight_ball = scoring_player.get_node(ball_name)
 				highlight_ball.modulate.a = 0.25
-			# This is how we're tracking rounds, and we're basically repeating the above ball highlighting
-			# But this time, its applied to the golden balls that indicate round score like a fighting game
+# This is how we're tracking rounds, and we're basically repeating the above ball highlighting
+# But this time, its applied to the golden balls that indicate round score like a fighting game
 			leftgames += 1
 			ball_name = "RoundBall"+str(leftgames)
 			highlight_ball = scoring_player.get_node(ball_name)
@@ -70,29 +56,23 @@ func _on_player_layer_goal(player):
 				print("Left Player wins the match")
 				win(player)
 	else:
-		# Turns the goal splash timer on, which turns on the on-screen notification
-		goal_splash_begin.emit()
-		# Add points
-		rightscore += 1
-		# Find the appropriate 'scoreball'
-		ball_name = "ScoreBall"+str(rightscore)
-		# Make sure we're looking at the correct set of UI elements
-		scoring_player = get_node("Player Right UI")
-		# Actually grab the scoreball set two lines above
-		highlight_ball = scoring_player.get_node(ball_name)
-		# Highlight the bad boi, so the players can see the score
-		highlight_ball.modulate.a = 1
+		goal_splash_begin.emit() # Turns the goal splash timer on, which turns on the on-screen notification
+		rightscore += 1 # Add points
+		ball_name = "ScoreBall"+str(rightscore) # Find the appropriate 'scoreball'
+		scoring_player = get_node("Player Right UI") # Make sure we're looking at the correct set of UI elements
+		highlight_ball = scoring_player.get_node(ball_name) # Actually grab the scoreball set two lines above
+		highlight_ball.modulate.a = 1 # Highlight the bad boi, so the players can see the score
 		if rightscore >= 10: # This is round win condition
-			# Reset scores for the round - left and right
+# Reset scores for the round - left and right
 			rightscore = 0
 			leftscore = 0
-			# Undo any highlighting above
+# Undo any highlighting above
 			for i in range(1,11):
 				ball_name = "ScoreBall"+str(i)
 				highlight_ball = scoring_player.get_node(ball_name)
 				highlight_ball.modulate.a = 0.25
-			# This is how we're tracking rounds, and we're basically repeating the above ball highlighting
-			# But this time, its applied to the golden balls that indicate round score like a fighting game
+# This is how we're tracking rounds, and we're basically repeating the above ball highlighting
+# But this time, its applied to the golden balls that indicate round score like a fighting game
 			rightgames += 1
 			ball_name = "RoundBall"+str(rightgames)
 			highlight_ball = scoring_player.get_node(ball_name)
