@@ -3,6 +3,7 @@ extends Node2D
 @export var ballExplosion : PackedScene # This is ball-kill particle effect
 @export var eastbricks : PackedScene # Breakout bricks in front of the east goal
 @export var westbricks : PackedScene # Breakout bricks in front of the west goal
+@onready var goalxplodesfx = $goalsplodesfx
 var ball # Seek and Destroy!! (mostly, but not always)
 var inner_court_size = Vector2(6, 16) #Top-left court bounds
 var outer_court_size = Vector2(234, 129) #Bottom-right court bounds
@@ -41,6 +42,7 @@ func _on_goal_east(body:Node) -> void:
 	if body.is_in_group("ball"):
 ## GOAL EXPLOSION
 		goal_explosion(particle_color, body)
+		goalxplodesfx.play()
 		set_physics_process(false) # Turn off ball spawning for the goal period
 		body.queue_free() # kill that ball for respawn; called last to 'hide' the disappearance
 		reset_bricks("East") # clear and re-spawn the bricks
@@ -51,6 +53,7 @@ func _on_goal_west(body:Node) -> void:
 	if body.is_in_group("ball"):
 ## GOAL EXPLOSION
 		goal_explosion(particle_color, body)
+		goalxplodesfx.play()
 		set_physics_process(false) # Turn off ball spawning for the goal period
 		body.queue_free() # kill that ball for respawn; called last to 'hide' the disappearance
 		reset_bricks("West") # clear and re-spawn the bricks

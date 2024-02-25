@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://baurjv4dr2yso"]
+[gd_scene load_steps=28 format=3 uid="uid://baurjv4dr2yso"]
 
 [ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/Backgrounds/background.png" id="1_12jnl"]
 [ext_resource type="Texture2D" uid="uid://de12kjkihoviu" path="res://assets/Sprites/uibar.png" id="2_1762v"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://3a0e5lm2ujyu" path="res://tscn/bricks_east.tscn" id="18_nuqjc"]
 [ext_resource type="Texture2D" uid="uid://bbyguyi1kvf71" path="res://assets/Sprites/paddlewhite.png" id="19_8ri1g"]
 [ext_resource type="PackedScene" uid="uid://dawmoc887fx1x" path="res://tscn/bricks_west.tscn" id="19_uu3yf"]
+[ext_resource type="AudioStream" uid="uid://bhc5gnnjl8kka" path="res://assets/sfx/goalexplosion.mp3" id="24_4q2si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
 size = Vector2(2, 42)
@@ -528,6 +529,10 @@ position = Vector2(120, 72.5)
 [node name="Bricks West" parent="Player Layer" instance=ExtResource("19_uu3yf")]
 
 [node name="Bricks East" parent="Player Layer" instance=ExtResource("18_nuqjc")]
+
+[node name="goalsplodesfx" type="AudioStreamPlayer" parent="Player Layer"]
+stream = ExtResource("24_4q2si")
+volume_db = -10.0
 
 [connection signal="game_over" from="UI Layer/UI Elements" to="Player Layer" method="_on_game_over"]
 [connection signal="goal_splash_begin" from="UI Layer/UI Elements" to="UI Layer/UI Elements/Splash Timer" method="_on_ui_elements_goal_splash_begin"]
