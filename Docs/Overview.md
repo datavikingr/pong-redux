@@ -4,8 +4,7 @@
 Battle pong, with some breakout shenanigans, fun pixel art backgrounds, and Licensed chiptune music (or used with permission, which is the same).
 
 ## Table of Contents
-
-
+ - <a href="#features--roadmap">Features & Roadmap</a>
  - <a href="#code-overview">Code Overview</a>
     - <a href="#composition-pattern">Composition Pattern</a>
     - <a href="#signals">Signals</a>
@@ -14,6 +13,51 @@ Battle pong, with some breakout shenanigans, fun pixel art backgrounds, and Lice
  - <a href="#art">Art</a>
  - <a href="Business">Business</a>
     - <a href="#marketing">Marketing</a>
+
+# Features & Roadmap
+
+## In game features
+- ~~Regular pong mode~~
+- ~~Breakout Bricks~~
+- ~~Sound Effects~~
+- Controller support
+- Paddle rotation as movement option
+- Paddle spin move (quick 360 degree spin)
+- Paddle dash move (quick forward and back move to smack the ball)
+- Lighting/Glow effects
+- Timer at the top of the screen
+- BGM
+- Game start countdown
+- Post Goal countdown
+- Ball-pop SFX & Splash & Countdown
+- Stats like saves/shots, little-splash
+- Powerups/Mutators
+    - Multiball
+    - Slow ball
+    - Fast ball
+    - Ranged Attack (effects ball & bricks)
+    - Paddle speed boost
+    - Mega-smack (faster ball)
+    - Grow paddle
+    - Repair bricks
+    - 30 second assistant paddle (AI)
+
+## Meta-game Features
+- Menu
+- Icon
+- Pause
+- Settings
+   - Profiles like smash, stores color & stats
+   - BG Selector/Randomizer
+- Custom Splash Screen
+- Bangin' chiptune soundtrack
+
+## Roadmap
+- Lotsa maps, with very weird shapes and brick-patterns
+- GAME MODES: 
+   - Teams mode (up to 3 per side)
+   - Single player mode with AI opponent
+   - Dodgeball pong. Qty of balls grows over time
 
 # Code Overview
 
