@@ -541,6 +541,5 @@ volume_db = -10.0
 [connection signal="body_entered" from="Board Layer/Goal West/Goal Line West" to="Player Layer" method="_on_goal_west"]
 [connection signal="body_entered" from="Board Layer/Goal East/Goal Line East" to="Player Layer" method="_on_goal_east"]
 [connection signal="goal" from="Player Layer" to="UI Layer/UI Elements" method="_on_player_layer_goal"]
-[connection signal="body_entered" from="Player Layer/Ball" to="Board Layer" method="_on_ball_body_entered"]
 
 [editable path="Player Layer/Ball"]

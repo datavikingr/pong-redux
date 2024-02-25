@@ -13,12 +13,13 @@ func _ready():
 func _physics_process(_delta):
 	var current_speed = get_linear_velocity().length() # Check the current velocity magnitude
 	var velocity = linear_velocity 
-#Clamp speed based on min/max speeds
+# Clamp speed based on min/max speeds
 	if current_speed > max_speed: # If speed is higher than max, 
 		velocity = velocity.normalized() * max_speed # normalize the speed toward the max
 	if current_speed < min_speed: # If speed is higher than min, 
 		velocity = velocity.normalized() * min_speed # normalize the speed toward the min
 	set_linear_velocity(velocity) # Set the new velocity
+# SFX
 	if get_contact_count() > 0 and not is_playing_sfx: # Check for contact & not already playing
 		is_playing_sfx = true # Turn on the flag, to ensure we don't call this multiple times at the same time
 		touchsfx.play() # Play the sfx

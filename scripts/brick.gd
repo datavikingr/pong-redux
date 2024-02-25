@@ -1,10 +1,14 @@
 extends RigidBody2D
+
+# The Old method, I'm not destroying this.
 signal deathtimer()
 
-func _process(_delta):
-	for body in get_colliding_bodies(): # Check for collisions with other bodies
-		if body.name == "Ball": # Check if the colliding body is the ball
-			deathtimer.emit()
+func _ready():
+	self.body_entered.connect(_on_body_entered) #connect("body_entered", selfobj) # Connect the "body_entered" signal to the "_on_body_entered" method within the same object
+
+func _on_body_entered(body):
+	if body.name == "Ball":
+		deathtimer.emit()
 
 func _on_timer_timeout():
 	self.queue_free()  # Destroy the brick

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://lmrmicqgb4p5"]
+[gd_scene load_steps=6 format=3 uid="uid://lmrmicqgb4p5"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://b6865v8dn6cqp" path="res://tres/wall.tres" id="1_2drk8"]
 [ext_resource type="Script" path="res://scripts/brick.gd" id="1_7xsdr"]
 [ext_resource type="Texture2D" uid="uid://p0oxvb5l72sn" path="res://assets/Sprites/Brick.png" id="1_diav5"]
 [ext_resource type="Script" path="res://scripts/deathtimer.gd" id="3_ubpv3"]
@@ -11,7 +12,9 @@ size = Vector2(4, 10)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 mass = 1000.0
+physics_material_override = ExtResource("1_2drk8")
 gravity_scale = 0.0
+can_sleep = false
 lock_rotation = true
 freeze = true
 freeze_mode = 1
