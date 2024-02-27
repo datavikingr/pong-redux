@@ -20,8 +20,8 @@ Battle pong, with some breakout shenanigans, fun pixel art backgrounds, and Lice
 - ~~Regular pong mode~~
 - ~~Breakout Bricks~~
 - ~~Sound Effects~~
-- Controller support
-- Paddle rotation as movement option
+- ~~Controller support~~
+- ~~Paddle rotation as movement option~~
 - Paddle spin move (quick 360 degree spin)
 - Paddle dash move (quick forward and back move to smack the ball)
 - Lighting/Glow effects
