@@ -3,7 +3,7 @@ extends RigidBody2D
 @export var speed: int  = 150 # Self evident & pretty quick, too
 @export var playercolor: Color = Color(1, .056, .502) # #c1236f is a vaporwave pink
 @export var accumulated_rotation: float = 0.0 #starting setting
-@export var rotation_speed: float = 5.0  # Adjust as needed
+@export var rotation_speed: float = 10.0  # Adjust as needed
 
 func _ready() -> void:
 	self.modulate = playercolor

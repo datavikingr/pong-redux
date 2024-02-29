@@ -21,8 +21,8 @@
 [ext_resource type="FontFile" uid="uid://ctje33g4vstjo" path="res://fonts/upheavtt.ttf" id="13_o4b3h"]
 [ext_resource type="PackedScene" uid="uid://cnchnhdhepcde" path="res://tscn/ball_explode.tscn" id="15_iehge"]
 [ext_resource type="PackedScene" uid="uid://3a0e5lm2ujyu" path="res://tscn/bricks_east.tscn" id="18_nuqjc"]
-[ext_resource type="Texture2D" uid="uid://bbyguyi1kvf71" path="res://assets/Sprites/paddlewhite.png" id="19_8ri1g"]
 [ext_resource type="PackedScene" uid="uid://dawmoc887fx1x" path="res://tscn/bricks_west.tscn" id="19_uu3yf"]
+[ext_resource type="Texture2D" uid="uid://boh1g8hhussd" path="res://assets/Sprites/medwhite.png" id="21_fwdb7"]
 [ext_resource type="AudioStream" uid="uid://bhc5gnnjl8kka" path="res://assets/sfx/goalexplosion.mp3" id="24_4q2si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
@@ -33,7 +33,7 @@ size = Vector2(2, 2)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_851qf"]
 radius = 2.0
-height = 12.5
+height = 17.0
 
 [node name="main" type="Node2D"]
 
@@ -500,7 +500,7 @@ script = ExtResource("8_2oo0k")
 playercolor = Color(0.756863, 0.137255, 0.435294, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player Layer/Player West"]
-texture = ExtResource("19_8ri1g")
+texture = ExtResource("21_fwdb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/Player West"]
 shape = SubResource("CapsuleShape2D_851qf")
@@ -508,7 +508,7 @@ debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 
 [node name="Player East" type="RigidBody2D" parent="Player Layer"]
 unique_name_in_owner = true
-position = Vector2(209.515, 72.5)
+position = Vector2(210, 72.5)
 mass = 1000.0
 physics_material_override = ExtResource("2_q337k")
 gravity_scale = 0.0
@@ -517,7 +517,7 @@ script = ExtResource("10_sr4sl")
 playercolor = Color(0.4, 0.133333, 0.8, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player Layer/Player East"]
-texture = ExtResource("19_8ri1g")
+texture = ExtResource("21_fwdb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Layer/Player East"]
 shape = SubResource("CapsuleShape2D_851qf")
