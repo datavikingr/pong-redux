@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://baurjv4dr2yso"]
+[gd_scene load_steps=29 format=3 uid="uid://baurjv4dr2yso"]
 
 [ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/Backgrounds/background.png" id="1_12jnl"]
 [ext_resource type="Texture2D" uid="uid://de12kjkihoviu" path="res://assets/Sprites/uibar.png" id="2_1762v"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://3a0e5lm2ujyu" path="res://tscn/bricks_east.tscn" id="18_nuqjc"]
 [ext_resource type="PackedScene" uid="uid://dawmoc887fx1x" path="res://tscn/bricks_west.tscn" id="19_uu3yf"]
 [ext_resource type="Texture2D" uid="uid://boh1g8hhussd" path="res://assets/Sprites/medwhite.png" id="21_fwdb7"]
+[ext_resource type="Script" path="res://scripts/SpinDash.gd" id="22_iqhtl"]
 [ext_resource type="AudioStream" uid="uid://bhc5gnnjl8kka" path="res://assets/sfx/goalexplosion.mp3" id="24_4q2si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
@@ -506,6 +507,12 @@ texture = ExtResource("21_fwdb7")
 shape = SubResource("CapsuleShape2D_851qf")
 debug_color = Color(0.905882, 0.282353, 0.309804, 0.419608)
 
+[node name="SpinDash" type="Timer" parent="Player Layer/Player West"]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+script = ExtResource("22_iqhtl")
+
 [node name="Player East" type="RigidBody2D" parent="Player Layer"]
 unique_name_in_owner = true
 position = Vector2(210, 72.5)
@@ -541,5 +548,7 @@ volume_db = -10.0
 [connection signal="body_entered" from="Board Layer/Goal West/Goal Line West" to="Player Layer" method="_on_goal_west"]
 [connection signal="body_entered" from="Board Layer/Goal East/Goal Line East" to="Player Layer" method="_on_goal_east"]
 [connection signal="goal" from="Player Layer" to="UI Layer/UI Elements" method="_on_player_layer_goal"]
+[connection signal="spinattack" from="Player Layer/Player West" to="Player Layer/Player West/SpinDash" method="_on_player_west_spinattack"]
+[connection signal="timeout" from="Player Layer/Player West/SpinDash" to="Player Layer/Player West" method="_on_spin_dash_timeout"]
 
 [editable path="Player Layer/Ball"]

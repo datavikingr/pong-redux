@@ -2,8 +2,10 @@ extends RigidBody2D
 
 @export var speed: int  = 150 # Self evident & pretty quick, too
 @export var playercolor: Color = Color(1, .056, .502) # #c1236f is a vaporwave pink
-@export var accumulated_rotation: float = 0.0 #starting setting
+var accumulated_rotation: float = 0.0 #starting setting
 @export var rotation_speed: float = 10.0  # Adjust as needed
+@onready var hitbox = get_node("CollisionShape2D")
+signal spinattack()
 
 func _ready() -> void:
 	self.modulate = playercolor
@@ -14,6 +16,8 @@ func _on_body_entered(_body) -> void:
 func _physics_process(delta) -> void:
 	player_movement()
 	player_rotation(delta)
+	player_spin_move(delta)
+	player_dash_move(delta)
 
 func player_movement() -> void:
 	var input_direction = Vector2.ZERO # Normalize from previous cycle, same as the cal lab: zero before every measurement.
@@ -28,4 +32,19 @@ func player_rotation(delta) -> void:
 	var rotation_direction = Input.get_action_strength("playerleft_cw") - Input.get_action_strength("playerleft_ccw") #TODO: We'll see if this needs flipped
 	var rotation_angle = rotation_direction * rotation_speed * delta # Calculate rotation angle based on direction and rotation speed
 	accumulated_rotation += rotation_angle
-	rotation += accumulated_rotation # Apply rotation 
+	rotation += accumulated_rotation # Apply rotation
+	hitbox.rotation = self.rotation # Apply rotation to hitbox, so ball deflects the correct direction
+
+func player_spin_move(_delta) -> void:
+	if Input.is_action_just_pressed("playerleft_spinmove"):
+		angular_velocity = 12.5664 * 2.5
+		spinattack.emit()
+
+func player_dash_move(_delta) -> void:
+	if Input.is_action_just_pressed("playerleft_dashmove"):
+		rotation = 0
+
+func _on_spin_dash_timeout():
+	angular_velocity = 0
+	self.rotation_degrees = 0
+
